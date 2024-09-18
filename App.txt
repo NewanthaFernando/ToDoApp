@@ -10,9 +10,8 @@ const Stack = createStackNavigator();
 const App = () => {
   const [tasks, setTasks] = useState([]);
 
-  // Ensure task always has a description, even if empty
-  const addTask = (text, description = '') => {
-    setTasks([...tasks, { id: Date.now().toString(), text, description, completed: false }]);
+  const addTask = (text) => {
+    setTasks([...tasks, { id: Date.now().toString(), text, completed: false }]);
   };
 
   const deleteTask = (id) => {
@@ -41,10 +40,10 @@ const App = () => {
             <TaskScreen
               {...props}
               tasks={tasks}
-              onAddTask={addTask} // Pass both task and description here
+              onAddTask={addTask}
               onDeleteTask={deleteTask}
               onEditTask={editTask}
-              onToggleTask={onToggleTask}
+              onToggleTask={onToggleTask} // Pass the onToggleTask function as a prop
             />
           )}
         </Stack.Screen>
